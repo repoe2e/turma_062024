@@ -1,6 +1,9 @@
 package portal.aluno.ui.metodos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
 
@@ -37,6 +40,19 @@ public class MetodosTestes extends Drivers {
 			assertEquals(titleEsperado, titleCapturado);
 		} catch (Exception e) {
 			throw new NotFoundException("Title não encontrado ou diferente do esperado " + titleEsperado);
+		}
+	}
+	
+	/**
+	 * Escrever em um elemento WEB informando o By 
+	 * @param locator
+	 * @param texto
+	 */
+	public void escrever(By locator, String texto) {
+		try {
+			driver.findElement(locator).sendKeys(texto);
+		} catch (Exception e) {
+		throw new NoSuchElementException("Elemento " + locator + " não encontrado.");
 		}
 	}
 
