@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NotFoundException;
 
 import portal.aluno.ui.drivers.Drivers;
@@ -42,7 +43,7 @@ public class MetodosTestes extends Drivers {
 			throw new NotFoundException("Title não encontrado ou diferente do esperado " + titleEsperado);
 		}
 	}
-	
+
 	/**
 	 * Escrever em um elemento WEB informando o By 
 	 * @param locator
@@ -53,6 +54,30 @@ public class MetodosTestes extends Drivers {
 			driver.findElement(locator).sendKeys(texto);
 		} catch (Exception e) {
 		throw new NoSuchElementException("Elemento " + locator + " não encontrado.");
+		}
+	}
+	
+	/**
+	 * Clicar em um elemento WEB informando o By
+	 * @param locator
+	 */
+	public void clicar(By locator) {
+		try {
+			driver.findElement(locator).click();
+		} catch (Exception e) {
+			throw new NoSuchElementException("Elemento " + locator + " não encontrado.");
+		}
+	}
+	/**
+	 * Validar um alert
+	 * @param alertEsperado
+	 */
+	public void validarAlert(String alertEsperado) {
+		try {
+			String alert = driver.switchTo().alert().getText();
+			assertEquals(alert, alertEsperado);
+		} catch (Exception e) {
+			throw new NoAlertPresentException("Alert " + alertEsperado + " não encontrado");
 		}
 	}
 

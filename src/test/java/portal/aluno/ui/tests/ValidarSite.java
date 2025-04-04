@@ -20,7 +20,7 @@ public class ValidarSite {
 	
 	@AfterEach
 	public void tearDown() {
-		Navegadores.finalizarTeste();
+	//	Navegadores.finalizarTeste();
 	}
 	
 	@Test
@@ -32,5 +32,15 @@ public class ValidarSite {
 	public void testTitulo() {
 		metodo.validarTexto(el.getTituloPrincipal(), "Plataforma E2E Treinamentos");
 	}
-
+	
+	@Test
+	public void login() {
+		metodo.escrever(el.getUsuario(), "e2etreinamentos");
+		metodo.escrever(el.getSenha(), "e2e@123");
+		metodo.clicar(el.getBtnLogin());
+		metodo.validarAlert("Login realizado com sucesso");
+	}
+	
+	
+	
 }
