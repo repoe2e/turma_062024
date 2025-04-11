@@ -9,38 +9,53 @@ import portal.aluno.ui.elementos.ELementos;
 import portal.aluno.ui.metodos.MetodosTestes;
 
 public class ValidarSite {
-	
+
 	MetodosTestes metodo = new MetodosTestes();
 	ELementos el = new ELementos();
 
 	@BeforeEach
-	public void setup() {
+	void setup() {
 		Navegadores.IniciarTeste();
 	}
-	
+
 	@AfterEach
-	public void tearDown() {
-	//	Navegadores.finalizarTeste();
+	void tearDown() {
+		// Navegadores.finalizarTeste();
 	}
-	
+
 	@Test
-	public void testTitle() {
+	void testTitle() {
 		metodo.validarTitle("Plataforma do ALuno - E2E Treinamentos");
 	}
 
 	@Test
-	public void testTitulo() {
+	void testTitulo() {
 		metodo.validarTexto(el.getTituloPrincipal(), "Plataforma E2E Treinamentos");
 	}
-	
+
 	@Test
-	public void login() {
+	void loginComSucesso() {
 		metodo.escrever(el.getUsuario(), "e2etreinamentos");
 		metodo.escrever(el.getSenha(), "e2e@123");
 		metodo.clicar(el.getBtnLogin());
-		metodo.validarAlert("Login realizado com sucesso");
+		String logado = "Bem vindo a plataforma do Aluno E2E Treinamentos!";
+		metodo.validarTexto(el.getTituloLogado(), logado);
+	}
+
+	void usuarioBranco() {
+
+	}
+
+	void senhaBranco() {
+
 	}
 	
+	void usuarioInvalido() {
+		
+	}
 	
-	
+	void senhaInvalida() {
+		
+	}
+
 }

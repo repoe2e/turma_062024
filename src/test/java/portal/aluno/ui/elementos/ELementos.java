@@ -10,6 +10,14 @@ public class ELementos {
 	private By senha = By.id("senha");
 	private By btnLogin = By.xpath("//*[text()='Login']");
 	
+	
+	// página usuário logado
+	private By tituloLogado = By.id("bem-vindo");
+	
+	public By getTituloLogado() {
+		return tituloLogado;
+	}
+		
 	public By getTituloPrincipal() {
 		return tituloPrincipal;
 	}
