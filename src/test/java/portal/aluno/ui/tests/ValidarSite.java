@@ -20,7 +20,7 @@ public class ValidarSite {
 
 	@AfterEach
 	void tearDown() {
-		// Navegadores.finalizarTeste();
+		 Navegadores.finalizarTeste();
 	}
 
 	@Test
@@ -42,20 +42,33 @@ public class ValidarSite {
 		metodo.validarTexto(el.getTituloLogado(), logado);
 	}
 
-	void usuarioBranco() {
-
-	}
-
+	@Test
 	void senhaBranco() {
-
+		metodo.escrever(el.getSenha(), "e2e@123");
+		metodo.clicar(el.getBtnLogin());
+		metodo.validarAlert("Usuário e senha são obrigatórios.");
 	}
 	
+	@Test
+	void usuarioBranco() {
+		metodo.escrever(el.getUsuario(), "e2etreinamentos");
+		metodo.clicar(el.getBtnLogin());
+		metodo.validarAlert("Usuário e senha são obrigatórios.");
+	}
+	
+	@Test
 	void usuarioInvalido() {
-		
+		metodo.escrever(el.getUsuario(), "errado");
+		metodo.escrever(el.getSenha(), "e2e@123");
+		metodo.clicar(el.getBtnLogin());
+		metodo.validarAlert("Usuário ou senha inválidos");
 	}
 	
+	@Test
 	void senhaInvalida() {
-		
+		metodo.escrever(el.getUsuario(), "e2etreinamentos");
+		metodo.escrever(el.getSenha(), "errada");
+		metodo.clicar(el.getBtnLogin());
+		metodo.validarAlert("Usuário ou senha inválidos");
 	}
-
 }
